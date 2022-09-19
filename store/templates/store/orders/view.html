@@ -1,0 +1,75 @@
+{% extends 'store/layouts/main.html' %}
+
+{% block content %}
+
+<div class="py-1" style="background-color:#adb5bd;">
+    <div class="container">
+        <a class="text-white" href="{% url 'home' %}">Home / </a>
+        <a class="text-white" href="{% url 'myorders' %}">My Orders /</a>
+        <a class="text-white" href="{% url 'orderview' order.tracking_no%}">Order View</a>
+    </div>
+</div>
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header bg-primary">
+                    <h2 class="nb-0 text-white">Order View
+                        <a href="{% url 'myorders' %}" class="btn btn-dark float-end text-white"><i class="fa fa-reply"></i> Back</a>
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Shipping details</h4>
+                            <hr>
+                            <label class="mt-2">First Name</label class="mt-2">
+                            <input type="text" disabled class="form-control" value="{{order.fname }}">
+                            <label class="mt-2">Last Name</label class="mt-2">
+                                <input type="text" disabled class="form-control" value="{{order.lname }}">
+                            <label class="mt-2">Email</label class="mt-2">
+                                <input type="text" disabled class="form-control" value="{{order.email }}">
+                            <label class="mt-2">Contact No</label class="mt-2">
+                                <input type="text" disabled class="form-control" value="{{order.phone }}">
+                            <label class="mt-2">address</label class="mt-2">
+                            <input type="text" disabled class="form-control" value="{{order.address}} , {{order.city}} , {{order.state}} , {{order.country}}">
+                            <label class="mt-2">Zip Code</label class="mt-2">
+                                <input type="text" disabled class="form-control" value="{{order.pincode }}">
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Order details</h4>
+                            <hr>
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Image</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in orderitems  %}
+                                    <tr>
+                                        <td>{{item.product.name}}</td>
+                                        <td>{{item.quantity}}</td>
+                                        <td>{{item.price}}</td>
+                                        <td>
+                                            <img src="{{item.product.prodyct_image.url}}" height="50px" width="50px" alt="Product Image">
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <h4 class="fw-bold">Grand Total <span class="float-end">{{order.total_price}} $</span></h4>
+
+                            <h6>Payment Mode <input type="text" disabled class="form-control" value="{{order.payment_mode}}"></h6>
+                            <h6>Order Status <input type="text" disabled class="form-control" value="{{order.status}}"></h6>
+                            <h6>Tracking No <input type="text" disabled class="form-control" value="{{order.tracking_no}}"></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

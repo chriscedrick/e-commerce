@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale-1.0">
+    <title>
+        {% block title %}
+
+        {% endblock title %}
+    </title>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https:///stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    {% comment %} Arletify js {% endcomment %}
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+
+    <link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/owl.theme.default.min.css' %}" rel="stylesheet" />
+
+    <style>
+        * {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .products-viewTag {
+            background-color: red;
+            clor: #fff;
+            font-size: 11px;
+            positions: absolute;
+            text-align: center;
+            text-transform: uppercase;
+            top: 22px;
+            margin-left: 17.5rem;
+            padding: 7px 10px;
+            font-weight: 600;
+            min-width: 45px;
+        }
+
+        .active {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+    {% include 'store/inc/navbar.html' %}
+    </div>
+    {% comment %} <br />
+    <hr> {% endcomment %}
+    {% block content %}
+
+    {% endblock content %}
+    <div>
+    {% include 'store/inc/footer.html' %}
+    </div>
+    {% comment %} jquery {% endcomment %}
+    <script src="{% static '/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static '/js/custom.js' %}"></script>
+    <script src="{% static '/js/owl.carousel.min.js' %}"></script>
+
+    {% comment %} Bootstrap {% endcomment %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
+
+    {% comment %} Alertify js {% endcomment %}
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+    <script>
+        var availableTags = [];
+        $.ajax({
+            method: "GET",
+            url: "/product-list",
+            success: function (response) {
+                startAutocomplete(response);
+            }
+        });
+
+        function startAutocomplete(availableTags) {
+            $("#searchproducts").autocomplete({
+                source: availableTags
+            });
+        }
+    </script>
+    <script>
+        {
+            %
+            for msg in messages %
+        }
+        alertify.success('{{msg}}');
+
+        {
+            % endfor %
+        }
+    </script>
+    {% block scripts %}
+
+    {% endblock scripts %}
+</body>
+
+</html>

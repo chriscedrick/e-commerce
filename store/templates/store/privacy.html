@@ -1,0 +1,33 @@
+{% extends 'store/layouts/main.html' %}
+
+{% block content %}
+
+<div class="py-1" style="background-color:#adb5bd;">
+    <div class="container">
+        <a class="text-white" href="{% url 'home' %}">Home / </a>
+        <a class="text-white" href="{% url 'privacy' %}">Privacy Policy </a>
+    </div>
+</div>
+
+<div class="py-5" style="font-family: 'Roboto', sans-serif;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow product_data">
+                    <div class="card-header bg-primary">
+                        <h1 class="text-center text-white">Privacy Policy</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="" style="font-weight:bold;font-size:18px">
+                            Vunjabei (T) Group Limited is a Tanzanian Limited Company dealing with the supply and
+                            distribution of casual, official and sports apparel and its merchandise for adults,
+                            teenagers and children. Formerly it was run by a sole proprietor, Mr. Fred Fabian Ngajiro
+                            from year 2016 and thereafter incorporated under the company’s Act of 2002, on 20th of
+                            September, 2018.
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'store/layouts/main.html' %}
+
+{% block content %}
+
+<div class="py-1" style="background-color:#adb5bd;">
+    <div class="container">
+        <a class="text-white" href="{% url 'home' %}">Home / </a>
+        <a class="text-white" href="{% url 'profile' %}">Profile </a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="">
+                <div class="card mt-3 shadow">
+                    <div class="card-body">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="col-md-6" style="margin-left:100px">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor" class="bi bi-person-circle text-primary"
+                                    viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                    <path fill-rule="evenodd"
+                                      d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                  </svg>
+                                  <div class="col-md-6 text-primary" style="margin-left:80px">
+                                  {{request.user.username}}
+                                  </div>
+                                </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-6">
+                                        <label for="" >Username :</label>
+                                        <input type="text" disabled value="{{request.user.username}}" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="" >Fist Name :</label>
+                                        <input type="text" disabled value="{{request.user.first_name}}" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="" >Last Name :</label>
+                                        <input type="text" disabled value="{{request.user.last_name}}" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="" >Email :</label>
+                                        <input type="text" disabled value="{{request.user.email}}" class="form-control">
+                                    </div>
+                                    <a href="{% url 'two_factor:profile' %}" class="btn btn-primary mt-4">Two Factor Authentication</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}
